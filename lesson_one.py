@@ -1,2 +1,2 @@
-name = input("Ismni kiriting3:")
-print(name) 
+name =input("Enter name:")
+print(name)
