@@ -63,6 +63,25 @@ class StudentCRUDSystem:
     def delete_students(self, student_id):
         self.students = [student for student in self.students if student.student_id != student_id]
         print('Student deleted successfully')
+    
+    def save_data(self):
+        try:
+            with open('testing.txt', 'w') as test:
+                for student in self.students:
+                    grades_string = ', '.join(map(str, student.grades))
+                    test.write(f"{student.student_id}|{student.name}|{student.age}|{grades_string}\n")
+                print('Successfully loaded')
+        except Exception as e:
+            print(e)
+
+    def load_from_data(self):
+        try:
+            with open('testing.txt', 'r') as test:
+                for list in test:
+                    student_id, name, age, grades = list.strip().split('|')
+                    print(student_id, name, age, grades)
+        except Exception as e:
+            print(e)
 
 # print(student1)
 
@@ -107,6 +126,12 @@ def main():
                 crud.delete_students(student_id)
             else:
                 print('not found')
+        elif command=='5':
+            crud.save_data()
+
+        elif command=='6':
+            crud.load_from_data()
+
         elif command =='7':
             break
 
